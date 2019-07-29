@@ -5,7 +5,6 @@ block_cipher = None
 import glob,os
 
 data_file = [(f, '.') for f in glob.glob('*.[pu][yi]') if f != "artemis.py"]
-data_file.append(('cacert.pem', '.'))
 
 a = Analysis(['artemis.py'],
              pathex=[os.getcwd()],

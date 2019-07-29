@@ -2,6 +2,7 @@ from functools import partial
 import hashlib
 import sys
 import os
+import certifi
 from PyQt5.QtWidgets import QMessageBox
 import urllib3
 from constants import Constants, Signal, Database, ChecksumWhat
@@ -56,11 +57,7 @@ def is_mac_os():
 
 def get_pool_manager():
     """Return a urllib3.PoolManager object."""
-    if hasattr(sys, "_MEIPASS"):
-        ca_certs = os.path.join(sys._MEIPASS, 'cacert.pem')
-    else:
-        ca_certs = 'cacert.pem'
-    return urllib3.PoolManager(ca_certs=ca_certs)
+    return urllib3.PoolManager(ca_certs=certifi.where())
 
 
 def checksum_ok(data, what):
